@@ -1,0 +1,51 @@
+@import url(http://fonts.googleapis.com/css?family=Patua+One);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+$navbar-default-bg: #ecf0f1;
+$navbar-default-link-color: red;
+$navbar-default-brand-color: #c0392b;
+$font-family-sans-serif: 'Patua One', Helvetica, Arial, sans-serif;
+$navbar-height: 60px;
+$navbar-default-link-color: #2c3e50;
+$body-bg: white;
+$btn-primary-bg: white;
+$dropdown-link-hover-bg: #ecf0f1;
+
+@import 'bootstrap';
+
+.navbar-brand {
+	font-family-sans-serif: 'Lato';
+	letter-spacing: -2px;
+	text-color: red;
+	font-size: 30px;
+	margin-bottom: 0px;
+}
+
+footer {
+  margin-top: 430px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 10px;
+}
