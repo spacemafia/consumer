@@ -3,9 +3,27 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
     </section>
   </aside>
+  <table>
+  <thead>
+    <tr>
+      <th>Count</th>
+      <th>Question</th>
+      <th>Posted at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @user.questions.each do |question| %>
+      <tr>
+      <td><%= @user.questions.count %></td>
+      <td><%= question.content %></td>
+      <td><%= time_ago_in_words(question.created_at) %></td>
+    <td><%= link_to 'Show', question %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
 </div>
