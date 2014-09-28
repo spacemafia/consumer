@@ -1,12 +1,17 @@
 ConsumerTadka::Application.routes.draw do
-  resources :users
+  resources :users do
+   member do
+     get :following, :followers
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions
+  resources :relationships, only: [:create, :destroy]
 
   root "static_pages#home"
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/signout', to: 'sessions#destroy',     via: :get
   match '/questions/:email/:id', to: 'questions#show', via: :get, as: :user_question
   match '/users/:id', to: 'users#show', via: :get, as: :users_showpage
   match '/all', to: 'questions#index', via: :get, as: :user_questions
