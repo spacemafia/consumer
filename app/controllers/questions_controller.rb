@@ -3,6 +3,9 @@ class QuestionsController < ApplicationController
   before_action :correct_user,   only: :destroy
   
   def index
+  @questions = Question.paginate(page: params[:page])
+  @question = current_user.questions.build if current_user
+  @user = @question.user
   end
 
   def show
@@ -21,6 +24,8 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @question.destroy
+    redirect_to root_url
   end
 
   private

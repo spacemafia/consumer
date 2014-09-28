@@ -1,25 +1,23 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, 'All Questions') %>
 <div class="row">
   <aside class="span4">
       <h1>
-        <%= @user.name %>
+        Latest questions
       </h1>
   </aside>
   <table>
   <thead>
     <tr>
-      <th>Count</th>
       <th>Question</th>
       <th>Question Age</th>
     </tr>
   </thead>
   <tbody>
-    <% @user.questions.each do |question| %>
+    <% @questions.each do |question| %>
       <tr>
-      <td><%= @user.questions.count %></td>
-      <td><%= question.content %></td>
+        <td><%= link_to question.user.name, users_showpage_path(:id => question.user.id) %>
       <td><%= time_ago_in_words(question.created_at) %></td>
-    <td><%= link_to 'Show', user_question_path(:email => question.user.id, :id => question.id) %></td>
+    <td><%= link_to question.content, user_question_path(:email => question.user.id, :id => question.id) %></td>
        <% if question.user == current_user %>
           <td><%= link_to 'Edit', edit_question_path(question) %></td>
           <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>

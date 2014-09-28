@@ -1,4 +1,5 @@
+<% provide(:title, @user.name) %>
 <ul>
 <li><%= @question.content %></li>
-<li><%= @user.name %></li>
+<li><%= @question.user.name %></li>
 </ul>
