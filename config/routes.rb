@@ -1,11 +1,11 @@
 ConsumerTadka::Application.routes.draw do
-  resources :users do
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :questions do
    member do
-     get :following, :followers
+     get :following
     end
   end
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :questions
   resources :relationships, only: [:create, :destroy]
 
   root "static_pages#home"

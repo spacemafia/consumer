@@ -2,4 +2,6 @@
 <ul>
 <li><%= @question.content %></li>
 <li><%= @question.user.name %></li>
+<li><%= render 'follow_form' if signed_in? %></li>
+<li><%= render 'followerstats' if signed_in? %></li>
 </ul>

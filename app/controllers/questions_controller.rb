@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   def index
   @questions = Question.paginate(page: params[:page])
   @question = current_user.questions.build if current_user
-  @user = @question.user
+  @user = @question.user if current_user
   end
 
   def show
@@ -26,6 +26,13 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     redirect_to root_url
+  end
+
+  def following
+    @title = "Following"
+    @question = Question.find(params[:id])
+    @users = @question.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private
