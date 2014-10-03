@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
   def show
    @user = User.find(params[:email])
    @question = Question.find(params[:id])
+   @questions = Question.all
+   @answer = Answer.new(params[:answer_content])
   end
 
   def create
@@ -19,20 +21,13 @@ class QuestionsController < ApplicationController
       flash[:success] = "Question created!"
       redirect_to root_url
     else
-    render 'static_pages/home'
+    render 'shared/questions_form'
     end
   end
 
   def destroy
     @question.destroy
     redirect_to root_url
-  end
-
-  def following
-    @title = "Following"
-    @question = Question.find(params[:id])
-    @users = @question.followers.paginate(page: params[:page])
-    render 'show_follow'
   end
 
   private

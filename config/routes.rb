@@ -2,9 +2,7 @@ ConsumerTadka::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions do
-   member do
-     get :following
-    end
+    resources :answers
   end
   resources :relationships, only: [:create, :destroy]
 
