@@ -30,11 +30,19 @@ class QuestionsController < ApplicationController
     redirect_to root_url
   end
 
+  def tagged
+  if params[:tag].present? 
+    @questions = Question.tagged_with(params[:tag])
+  else 
+    @questions = Question.postall
+  end
+  end
+
   private
 
-    def question_params
-      params.require(:question).permit(:content)
-    end
+  def question_params
+      params.require(:question).permit(:content, :tag_list)
+  end
 
     def correct_user
       @question = current_user.questions.find_by(id: params[:id])

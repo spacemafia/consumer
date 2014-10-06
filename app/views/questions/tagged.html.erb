@@ -1,0 +1,29 @@
+<% provide(:title, params[:tag]) %>
+<div class="row">
+  <aside class="span4">
+      <h1>
+        <%= params[:tag] %>
+      </h1>
+  </aside>
+  <table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Question Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.user.name, users_showpage_path(:id => question.user.id) %></td>
+      <td><%= time_ago_in_words(question.created_at) %></td>
+    <td><%= link_to question.content, user_question_path(:email => question.user.id, :id => question.id) %></td>
+       <% if question.user == current_user %>
+          <td><%= link_to 'Edit', edit_question_path(question) %></td>
+          <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    </tr>
+<% end %>
+</tbody>
+</table>
+</div>
