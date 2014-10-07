@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @questions = @user.questions.paginate(page: params[:page])
-    @answer = Answer.new
   end
 
   def new
@@ -50,11 +49,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-    def answer_params
-      params.require(:answer).permit(:answer_content)
-    end
-
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
