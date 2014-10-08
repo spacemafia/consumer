@@ -22,7 +22,7 @@
       <td><%= @user.questions.count %></td>
       <td><%= question.content %></td>
       <td><%= time_ago_in_words(question.created_at) %></td>
-      <td><%= link_to 'Show', user_question_path(:email => question.user.id, :id => question.id) %></td>
+      <td><%= link_to 'Show', user_question_path(:email => question.user.id, :id => question.slug) %></td>
        <% if question.user == current_user %>
           <td><%= link_to 'Edit', edit_question_path(question) %></td>
           <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>

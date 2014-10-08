@@ -6,5 +6,7 @@ class Question < ActiveRecord::Base
   default_scope -> { order('created_at DESC') }
   validates :content, presence: true, length: { maximum: 1400 }
 	validates :user_id, presence: true
+	extend FriendlyId
 	acts_as_taggable_on :tags
+	friendly_id :content, use: :slugged
 end

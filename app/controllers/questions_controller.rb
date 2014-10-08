@@ -1,16 +1,15 @@
 class QuestionsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
   
   def index
-  @questions = Question.paginate(page: params[:page])
+  @questions = Question.friendly.paginate(page: params[:page])
   @question = current_user.questions.build if current_user
   @user = @question.user if current_user
   end
 
   def show
    @user = User.find(params[:email])
-   @question = Question.find(params[:id])
+   @question = Question.friendly.find(params[:id])
    @questions = Question.all
    @answer = Answer.new(params[:answer_content])
   end
@@ -26,9 +25,12 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
-    redirect_to root_url
-  end
+   @question = Question.friendly.find(params[:id])
+    if @question.present?
+      @question.destroy
+    end
+    redirect_to questions_path
+   end
 
   def tagged
   if params[:tag].present? 
@@ -44,8 +46,4 @@ class QuestionsController < ApplicationController
       params.require(:question).permit(:content, :tag_list)
   end
 
-    def correct_user
-      @question = current_user.questions.find_by(id: params[:id])
-      redirect_to root_url if @question.nil?
-    end
 end
