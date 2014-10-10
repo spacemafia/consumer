@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008080016) do
+ActiveRecord::Schema.define(version: 20141010020946) do
 
   create_table "answers", force: true do |t|
     t.string   "answer_content"
@@ -20,6 +20,25 @@ ActiveRecord::Schema.define(version: 20141008080016) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "articles", force: true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.string   "introduction"
+    t.string   "subheadingone"
+    t.string   "contentone"
+    t.string   "subheadingtwo"
+    t.string   "contenttwo"
+    t.string   "subheadingthree"
+    t.string   "contentthree"
+    t.string   "subheadingfour"
+    t.string   "contentfour"
+    t.string   "deck"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "articles", ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
 
   create_table "questions", force: true do |t|
     t.string   "content"

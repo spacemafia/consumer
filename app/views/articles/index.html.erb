@@ -1,0 +1,39 @@
+<% provide(:title, 'Article Generator') %>
+<div class="row">
+<%= form_for(:article) do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :deck %>
+      <%= f.text_field :deck %>
+
+      <%= f.label :introduction %>
+      <%= f.text_field :introduction %>
+
+      <%= f.label :subheadingone %>
+      <%= f.text_field :subheadingone %>
+
+      <%= f.label :contentone %>
+      <%= f.text_field :contentone %>
+
+      <%= f.label :subheadingtwo %>
+      <%= f.text_field :subheadingtwo %>
+
+      <%= f.label :contenttwo %>
+      <%= f.text_field :contenttwo %>
+
+      <%= f.label :subheadingthree %>
+      <%= f.text_field :subheadingthree %>
+
+      <%= f.label :contentthree %>
+      <%= f.text_field :contentthree %>
+
+      <%= f.label :subheadingfour %>
+      <%= f.text_field :subheadingfour %>
+
+      <%= f.label :contentfour %>
+      <%= f.text_field :contentfour %>
+
+      <%= f.submit "Create article", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
