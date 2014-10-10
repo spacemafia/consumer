@@ -1,10 +1,14 @@
 class ArticlesController < ApplicationController
-  before_action :admin_user
     
   def index
   @articles = Article.all
   @article = current_user.articles.build if admin_user
   @user = @article.user if admin_user
+  end
+
+  def show
+   @article = Article.find(params[:id])
+   @articles = Article.all
   end
 
   def create

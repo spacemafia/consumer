@@ -1,6 +1,65 @@
-<%= form_for(@articles) do |f| %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new article..." %>
+<% provide(:title, @article.title) %>
+
+<div class="panel-group" id="accordion">
+	<% @articles.each do |article| %>
+	<h2><%= @article.title %></h2>
+	<h4><%= @article.deck %></h4>
+	<h5><%= @article.introduction %></h5>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <%= @article.subheadingone %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <%= @article.contentone %>
+      </div>
+    </div>
   </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-<% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          <%= @article.subheadingtwo %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= @article.contenttwo %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          <%= @article.subheadingthree %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= @article.contentthree %>
+      </div>
+    </div>
+  </div>
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          <%= @article.subheadingfour %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= @article.contentfour %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
