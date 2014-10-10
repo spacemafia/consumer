@@ -1,0 +1,19 @@
+<li><%= @sectionfour.headingfour %></li>
+<li><%= @sectionfour.contentfour %></li>
+
+<%= form_for([@sectionfour, @commentsfour]) do |f| %>
+  <div class="field">
+    <%= f.text_area :commentsfour %>
+  </div>
+  <button class="btn" type="Submit">
+    Create
+  </button>
+<% end %>
+
+<ul>
+	<li><%= @sectionfour.commentsfour.count %></li>
+    <% @sectionfour.commentsfour.each do |commentsfour| %>
+      <li><%= commentsfour.commentsfour %></li>
+      <li><%= commentsfour.user.name %></li>
+    </ul>
+    <% end %>

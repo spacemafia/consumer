@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :commentsones
   has_many :sectiontwos, dependent: :destroy
   has_many :commentstwos
+  has_many :sectionthrees, dependent: :destroy
+  has_many :commentsthrees
+  has_many :sectionfours, dependent: :destroy
+  has_many :commentsfours
   before_save { self.email = email.downcase }
 	before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 } 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010095520) do
+ActiveRecord::Schema.define(version: 20141010110420) do
 
   create_table "answers", force: true do |t|
     t.string   "answer_content"
@@ -40,10 +40,26 @@ ActiveRecord::Schema.define(version: 20141010095520) do
 
   add_index "articles", ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
 
+  create_table "commentsfours", force: true do |t|
+    t.string   "commentsfour"
+    t.string   "user_id"
+    t.string   "sectionfour_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "commentsones", force: true do |t|
     t.string   "commentsone"
     t.string   "user_id"
     t.string   "sectionone_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "commentsthrees", force: true do |t|
+    t.string   "commentsthree"
+    t.string   "user_id"
+    t.string   "sectionthree_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,6 +91,15 @@ ActiveRecord::Schema.define(version: 20141010095520) do
 
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
 
+  create_table "sectionfours", force: true do |t|
+    t.string   "headingfour"
+    t.string   "contentfour"
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sectionones", force: true do |t|
     t.string   "headingone"
     t.string   "contentone"
@@ -85,6 +110,15 @@ ActiveRecord::Schema.define(version: 20141010095520) do
   end
 
   add_index "sectionones", ["headingone"], name: "index_sectionones_on_headingone"
+
+  create_table "sectionthrees", force: true do |t|
+    t.string   "headingthree"
+    t.string   "contentthree"
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sectiontwos", force: true do |t|
     t.string   "headingtwo"
