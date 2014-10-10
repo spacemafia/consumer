@@ -1,7 +1,6 @@
 <% provide(:title, @article.title) %>
 
 <div class="panel-group" id="accordion">
-	<% @articles.each do |article| %>
 	<h2><%= @article.title %></h2>
 	<h4><%= @article.deck %></h4>
 	<h5><%= @article.introduction %></h5>
@@ -9,57 +8,27 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          <%= @article.subheadingone %>
+          <%= link_to @sectionone.headingone, sectionones_showpage_path %>
         </a>
       </h4>
     </div>
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
-        <%= @article.contentone %>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          <%= @article.subheadingtwo %>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= @article.contenttwo %>
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          <%= @article.subheadingthree %>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= @article.contentthree %>
+        <%= link_to @sectionone.contentone, sectionones_showpage_path %>
       </div>
     </div>
   </div>
     <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          <%= @article.subheadingfour %>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          <%= link_to @sectiontwo.headingtwo, sectiontwos_showpage_path %>
         </a>
       </h4>
     </div>
-    <div id="collapseThree" class="panel-collapse collapse">
+    <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
-        <%= @article.contentfour %>
+        <%= link_to @sectiontwo.contenttwo, sectiontwos_showpage_path %>
       </div>
     </div>
   </div>
-  <% end %>
-</div>

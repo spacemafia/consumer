@@ -1,0 +1,12 @@
+<% provide(:title, 'Section Two Generator') %>
+<div class="row">
+<%= form_for(:sectiontwo) do |f| %>
+      <%= f.label :headingtwo %>
+      <%= f.text_field :headingtwo %>
+
+      <%= f.label :contenttwo %>
+      <%= f.text_field :contenttwo %>
+
+      <%= f.submit "Create sectiontwo", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>

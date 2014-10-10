@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010020946) do
+ActiveRecord::Schema.define(version: 20141010095520) do
 
   create_table "answers", force: true do |t|
     t.string   "answer_content"
@@ -40,6 +40,22 @@ ActiveRecord::Schema.define(version: 20141010020946) do
 
   add_index "articles", ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
 
+  create_table "commentsones", force: true do |t|
+    t.string   "commentsone"
+    t.string   "user_id"
+    t.string   "sectionone_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "commentstwos", force: true do |t|
+    t.string   "commentstwo"
+    t.string   "user_id"
+    t.string   "sectiontwo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -58,6 +74,26 @@ ActiveRecord::Schema.define(version: 20141010020946) do
   end
 
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+
+  create_table "sectionones", force: true do |t|
+    t.string   "headingone"
+    t.string   "contentone"
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sectionones", ["headingone"], name: "index_sectionones_on_headingone"
+
+  create_table "sectiontwos", force: true do |t|
+    t.string   "headingtwo"
+    t.string   "contenttwo"
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

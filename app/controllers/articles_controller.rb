@@ -8,8 +8,10 @@ class ArticlesController < ApplicationController
 
   def show
    @article = Article.find(params[:id])
+   @sectionone = Sectionone.find(params[:id])
+   @sectiontwo = Sectiontwo.find(params[:id])
    @articles = Article.all
-  end
+   end
 
   def create
     @article = current_user.articles.build(article_params)

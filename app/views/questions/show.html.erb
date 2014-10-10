@@ -1,10 +1,10 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, @question.content) %>
 <ul>
 <li><%= @question.content %></li>
 <li><%= @question.user.name %></li>
 <li><%= render 'follow_form' if signed_in? %></li>
 <li><%= render 'followerstats' if signed_in? %></li>
-<li><%= render 'questions' if signed_in? %></li>
+<li><%= render 'shared/answer_form' if signed_in? %></li>
 </ul>
 <ul>
 	<li><%= @question.answers.count %></li>

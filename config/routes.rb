@@ -6,6 +6,13 @@ ConsumerTadka::Application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
   resources :articles
+  resources :sectionones do
+    resources :commentsones
+  end
+
+  resources :sectiontwos do
+    resources :commentstwos
+  end
 
   root "static_pages#home"
   match '/signup',  to: 'users#new',            via: 'get'
@@ -18,6 +25,8 @@ ConsumerTadka::Application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/categories' => 'questions#tagged', via: :get, :as => 'tagged'
+  match '/sectionones/:id', to: 'sectionones#show', via: :get, as: :sectionones_showpage
+  match '/sectiontwos/:id', to: 'sectiontwos#show', via: :get, as: :sectiontwos_showpage
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
