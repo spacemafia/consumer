@@ -2,6 +2,7 @@
 
 <div class="panel-group" id="accordion">
   <h2><%= @article.title %></h2>
+  <%= image_tag @article.image.url(:medium) %>
   <h4><%= @article.deck %></h4>
   <h5><%= @article.introduction %></h5>
   <div class="panel panel-default">
@@ -61,3 +62,7 @@
     </div>
   </div>
 </div>
+<% @article.tags.any? %>
+  <% @article.tags.each do |tag| %>
+  <%= link_to tag.name, tagged_url(:tag => tag.name) %>
+<% end %> 

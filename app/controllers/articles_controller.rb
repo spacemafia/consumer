@@ -1,9 +1,15 @@
 class ArticlesController < ApplicationController
     
+  def new
+  @articles = Article.all
+  @article = current_user.articles.build(article_params) if admin_user
+  @user = @article.user if admin_user
+  end
+
   def index
   @articles = Article.all
-  @article = current_user.articles.build if admin_user
-  @user = @article.user if admin_user
+  @article = current_user.articles.build
+  @user = @article.user if current_user
   end
 
   def show
@@ -34,13 +40,18 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def tagged
+  if params[:tag].present? 
+    @articles = Article.tagged_with(params[:tag])
+  else 
+    @articles = Article.all
+  end
+  end
+
   private
 
   def article_params
-    params.require(:article).permit(:title, :introduction, :deck, :subheadingone,
-                                      :contentone, :subheadingtwo, :contenttwo, 
-                                      :subheadingthree, :contentthree, :subheadingfour,
-                                      :contentfour)
+    params.require(:article).permit(:title, :introduction, :deck, :image, :tag_list)
   end
 
   def admin_user

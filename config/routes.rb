@@ -1,11 +1,15 @@
 ConsumerTadka::Application.routes.draw do
   resources :users
+  
   resources :sessions, only: [:new, :create, :destroy]
+  
   resources :questions do
     resources :answers
   end
   resources :relationships, only: [:create, :destroy]
+  
   resources :articles
+
   resources :sectionones do
     resources :commentsones
   end
@@ -32,7 +36,8 @@ ConsumerTadka::Application.routes.draw do
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/categories' => 'questions#tagged', via: :get, :as => 'tagged'
+  match '/tagged' => 'questions#tagged', via: :get, :as => 'tagged'
+  match '/categories' => 'articles#tagged', via: :get, :as => 'categorised'
   match '/sectionones/:id', to: 'sectionones#show', via: :get, as: :sectionones_showpage
   match '/sectiontwos/:id', to: 'sectiontwos#show', via: :get, as: :sectiontwos_showpage
   match '/sectionthrees/:id', to: 'sectionthrees#show', via: :get, as: :sectionthrees_showpage

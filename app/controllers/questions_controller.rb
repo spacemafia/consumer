@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
   if params[:tag].present? 
     @questions = Question.tagged_with(params[:tag])
   else 
-    @questions = Question.postall
+    @questions = Question.all
   end
   end
 
