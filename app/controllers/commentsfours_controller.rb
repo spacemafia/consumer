@@ -7,7 +7,7 @@ def create
   @commentsfour.user = current_user
   if @commentsfour.save
      flash[:success] = "Comment created!"
-     redirect_to sectionfours_showpage_path(:id => @sectionfour.id)
+     redirect_to article_path(:id => @sectionfour.id)
   end
 end
 

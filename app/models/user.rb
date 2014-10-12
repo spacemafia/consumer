@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_merit
+
   has_many :questions, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_questions, through: :relationships, source: :followed

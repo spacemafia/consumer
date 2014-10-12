@@ -19,6 +19,7 @@ class ArticlesController < ApplicationController
    @sectionthree = Sectionthree.find(params[:id])
    @sectionfour = Sectionfour.find(params[:id])
    @articles = Article.all
+   @commentsfour = Commentsfour.new(params[:comments_content])
    end
 
   def create

@@ -58,11 +58,39 @@
     <div id="collapseFour" class="panel-collapse collapse">
       <div class="panel-body">
         <%= link_to @sectionfour.contentfour, sectionfours_showpage_path %>
-      </div>
+              </div>
+                  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          <%= form_for([@sectionfour, @commentsfour]) do |f| %>
+            <div class="field">
+              <%= f.text_area :commentsfour %>
+            </div>
+            <button class="btn" type="Submit">
+              Create
+            </button>
+          <% end %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+        <ul>
+          <li><%= @sectionfour.commentsfour.count %></li>
+            <% @sectionfour.commentsfour.each do |commentsfour| %>
+              <li><%= commentsfour.commentsfour %></li>
+              <li><%= commentsfour.user.name %></li>
+            </ul>
+            <% end %> 
+              </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 </div>
 <% @article.tags.any? %>
   <% @article.tags.each do |tag| %>
   <%= link_to tag.name, tagged_url(:tag => tag.name) %>
-<% end %> 
+<% end %>
