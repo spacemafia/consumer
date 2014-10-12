@@ -8,11 +8,15 @@
 </ul>
 <ul>
 	<li><%= @question.answers.count %></li>
-    <% @question.answers.each do |answer| %>
-      <li><%= answer.answer_content %></li>
-      <li><%= answer.user.name %></li>
-    </ul>
-<% end %>
+  <% @question.answers.each do |answer| %>
+	<%= answer.answer_content %>
+	<%= answer.user.name %>
+	<%= answer.get_likes.size %>
+	<%= answer.get_dislikes.size %>
+	<%= link_to 'Upvote', like_question_answer_path(:question_id => @question.id, :id => answer.id), method: :put %>
+	<%= link_to 'Downvote', dislike_question_answer_path(:question_id => @question.id, :id => answer.id), method: :put %><br/>
+	<% end %>
+</ul>
 <% @question.tags.any? %>
 	<% @question.tags.each do |tag| %>
 	<%= link_to tag.name, tagged_url(:tag => tag.name) %>

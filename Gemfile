@@ -10,7 +10,7 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'acts-as-taggable-on'
 gem 'paperclip', github: 'thoughtbot/paperclip'
-gem 'merit'
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

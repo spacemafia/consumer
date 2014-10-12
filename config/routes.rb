@@ -4,8 +4,14 @@ ConsumerTadka::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   
   resources :questions do
-    resources :answers
+    resources :answers do
+      member do
+        put "like", to: "answers#upvote"
+        put "dislike", to: "answers#downvote"
+      end
+    end
   end
+  
   resources :relationships, only: [:create, :destroy]
   
   resources :articles

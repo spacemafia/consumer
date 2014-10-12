@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  has_merit
-
   has_many :questions, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_questions, through: :relationships, source: :followed
@@ -23,6 +21,7 @@ class User < ActiveRecord::Base
   						uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+  acts_as_voter
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

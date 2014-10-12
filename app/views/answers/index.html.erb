@@ -1,0 +1,7 @@
+<ul>
+	<li><%= @question.answers.count %></li>
+    <% @question.answers.each do |answer| %>
+      <li><%= answer.answer_content %></li>
+      <li><%= answer.user.name %></li>
+    </ul>
+<% end %>
