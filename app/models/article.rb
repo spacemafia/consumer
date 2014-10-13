@@ -9,6 +9,7 @@ has_many :commentsthree
 has_one :sectionfour
 has_many :commentsfour
 has_many :questions
+belongs_to :questions
 has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 default_scope -> { order('created_at DESC') }
 validates :user_id, presence: true

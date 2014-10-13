@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   @questions = Question.paginate(page: params[:page])
   @question = current_user.questions.build if current_user
   @user = @question.user if current_user
+  @articles = Article.find(:all, :limit => 1)
   end
 
   def show

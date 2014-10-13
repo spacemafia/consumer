@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :article
+	has_many :question
 	has_many :relationships, foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :relationships, source: :follower
   has_many :answers

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012130411) do
+ActiveRecord::Schema.define(version: 20141013162259) do
 
   create_table "answers", force: true do |t|
     t.string   "answer_content"
@@ -25,14 +25,6 @@ ActiveRecord::Schema.define(version: 20141012130411) do
     t.string   "title"
     t.integer  "user_id"
     t.string   "introduction"
-    t.string   "subheadingone"
-    t.string   "contentone"
-    t.string   "subheadingtwo"
-    t.string   "contenttwo"
-    t.string   "subheadingthree"
-    t.string   "contentthree"
-    t.string   "subheadingfour"
-    t.string   "contentfour"
     t.string   "deck"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -82,7 +74,6 @@ ActiveRecord::Schema.define(version: 20141012130411) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug"
   end
 
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at"
@@ -129,6 +120,20 @@ ActiveRecord::Schema.define(version: 20141012130411) do
     t.string   "headingtwo"
     t.string   "contenttwo"
     t.integer  "article_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "surveys", force: true do |t|
+    t.string   "qone"
+    t.string   "qtwo"
+    t.string   "qthree"
+    t.string   "qfour"
+    t.string   "qfive"
+    t.string   "qsix"
+    t.string   "qseven"
+    t.string   "qeight"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

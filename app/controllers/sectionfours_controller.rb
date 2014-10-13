@@ -1,4 +1,5 @@
 class SectionfoursController < ApplicationController
+  before_action :admin_user
     
   def index
   @sectionfours = Sectionfour.all

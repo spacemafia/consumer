@@ -1,9 +1,10 @@
 class SectiontwosController < ApplicationController
+  before_action :admin_user
     
   def index
   @sectiontwos = Sectiontwo.all
-  @sectiontwo = current_user.sectiontwos.build if admin_user
-  @user = @sectiontwo.user if admin_user
+  @sectiontwo = current_user.sectiontwos.build
+  @user = @sectiontwo.user
   end
 
   def show
