@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   @articles = Article.all
   @article = current_user.articles.build
   @user = @article.user if current_user
+  @questions = Question.find(:all, :limit => 5)
   end
 
   def show
@@ -19,6 +20,9 @@ class ArticlesController < ApplicationController
    @sectionthree = Sectionthree.find(params[:id])
    @sectionfour = Sectionfour.find(params[:id])
    @articles = Article.all
+   @commentsone = Commentsone.new(params[:comments_content])
+   @commentstwo = Commentstwo.new(params[:comments_content])
+   @commentsthree = Commentsthree.new(params[:comments_content])
    @commentsfour = Commentsfour.new(params[:comments_content])
    end
 

@@ -22,3 +22,7 @@
 </tbody>
 </table>
 </div>
+<% @questions.each do |question| %>
+   <li><%= question.content %></li>
+   <li><%= question.user.name %></li>
+<% end %>

@@ -60,9 +60,9 @@
         <%= link_to @sectionfour.contentfour, sectionfours_showpage_path %>
               </div>
                   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+    </div>
+  </div>
+</div>
           <%= form_for([@sectionfour, @commentsfour]) do |f| %>
             <div class="field">
               <%= f.text_area :commentsfour %>
@@ -71,25 +71,63 @@
               Create
             </button>
           <% end %>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseFive" class="panel-collapse collapse">
-      <div class="panel-body">
-        <ul>
+
           <li><%= @sectionfour.commentsfour.count %></li>
             <% @sectionfour.commentsfour.each do |commentsfour| %>
               <li><%= commentsfour.commentsfour %></li>
               <li><%= commentsfour.user.name %></li>
             </ul>
             <% end %> 
-              </div>
-    </div>
-  </div>
-</div>
-    </div>
-  </div>
-</div>
+
+          <%= form_for([@sectionone, @commentsone]) do |f| %>
+            <div class="field">
+              <%= f.text_area :commentsone %>
+            </div>
+            <button class="btn" type="Submit">
+              Create
+            </button>
+          <% end %>
+          <li><%= @sectionone.commentsone.count %></li>
+            <% @sectionone.commentsone.each do |commentsone| %>
+              <li><%= commentsone.commentsone %></li>
+              <li><%= commentsone.user.name %></li>
+            </ul>
+            <% end %> 
+
+          <%= form_for([@sectionthree, @commentsthree]) do |f| %>
+            <div class="field">
+              <%= f.text_area :commentsthree %>
+            </div>
+            <button class="btn" type="Submit">
+              Create
+            </button>
+          <% end %>
+
+          <li><%= @sectionthree.commentsthree.count %></li>
+            <% @sectionthree.commentsthree.each do |commentsthree| %>
+              <li><%= commentsthree.commentsthree %></li>
+              <li><%= commentsthree.user.name %></li>
+            </ul>
+            <% end %> 
+
+          <%= form_for([@sectiontwo, @commentstwo]) do |f| %>
+            <div class="field">
+              <%= f.text_area :commentstwo %>
+            </div>
+            <button class="btn" type="Submit">
+              Create
+            </button>
+          <% end %>
+
+
+          <li><%= @sectiontwo.commentstwo.count %></li>
+            <% @sectiontwo.commentstwo.each do |commentstwo| %>
+              <li><%= commentstwo.commentstwo %></li>
+              <li><%= commentstwo.user.name %></li>
+            </ul>
+            <% end %> 
+
+
 <% @article.tags.any? %>
   <% @article.tags.each do |tag| %>
   <%= link_to tag.name, tagged_url(:tag => tag.name) %>
