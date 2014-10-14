@@ -1,6 +1,7 @@
 class Sectionthree < ActiveRecord::Base
 belongs_to :article
 belongs_to :user
-has_many :commentsthree
 default_scope -> { order('created_at DESC') }
+validates :contentthree, presence: true
+acts_as_votable
 end

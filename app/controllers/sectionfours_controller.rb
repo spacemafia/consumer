@@ -2,25 +2,37 @@ class SectionfoursController < ApplicationController
   before_action :admin_user
     
   def index
-  @sectionfours = Sectionfour.all
-  @sectionfour = current_user.sectionfours.build if admin_user
-  @user = @sectionfour.user if admin_user
+    @article = Article.find(params[:article_id])
+    @sectionfour = @article.sectionfours.all
   end
 
   def show
    @sectionfour = Sectionfour.find(params[:id])
-   @sectionfours = Sectionfour.all
-   @commentsfour = Commentsfour.new(params[:comments_content])
    end
 
   def create
-    @sectionfour = current_user.sectionfours.build(sectionfour_params)
+    @article = Article.find(params[:article_id])
+    @sectionfour = Sectionfour.new(sectionfour_params)
+    @sectionfour.article = @article
+    @sectionfour.user = current_user
     if @sectionfour.save
-      flash[:success] = "Section Four created!"
-      redirect_to root_url
-    else
-    redirect_to articles_path
+       flash[:success] = "Comment created!"
+       redirect_to @article
     end
+  end
+
+  def upvote
+  @article = Article.find(params[:article_id])
+  @sectionfour = Sectionfour.find(params[:id])
+  @sectionfour.liked_by current_user
+  redirect_to @article
+  end
+
+  def downvote
+  @article = Article.find(params[:article_id])
+  @sectionfour = Sectionfour.find(params[:id])
+  @sectionfour.disliked_by current_user
+  redirect_to @article
   end
 
   def destroy
@@ -28,14 +40,14 @@ class SectionfoursController < ApplicationController
     if @sectionfour.present?
       @sectionfour.destroy
     else
-    redirect_to articles_path
+    redirect_to root_url
     end
   end
 
   private
 
   def sectionfour_params
-    params.require(:sectionfour).permit(:headingfour, :contentfour)
+    params.require(:sectionfour).permit(:contentfour)
   end
 
   def admin_user

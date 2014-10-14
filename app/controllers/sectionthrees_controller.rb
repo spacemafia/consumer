@@ -2,25 +2,37 @@ class SectionthreesController < ApplicationController
   before_action :admin_user
     
   def index
-  @sectionthrees = Sectionthree.all
-  @sectionthree = current_user.sectionthrees.build
-  @user = @sectionthree.user
+    @article = Article.find(params[:article_id])
+    @sectionthree = @article.sectionthrees.all
   end
 
   def show
    @sectionthree = Sectionthree.find(params[:id])
-   @sectionthrees = Sectionthree.all
-   @commentsthree = Commentsthree.new(params[:comments_content])
    end
 
   def create
-    @sectionthree = current_user.sectionthrees.build(sectionthree_params)
+    @article = Article.find(params[:article_id])
+    @sectionthree = Sectionthree.new(sectionthree_params)
+    @sectionthree.article = @article
+    @sectionthree.user = current_user
     if @sectionthree.save
-      flash[:success] = "Section Three created!"
-      redirect_to root_url
-    else
-    redirect_to articles_path
+       flash[:success] = "Comment created!"
+       redirect_to @article
     end
+  end
+
+  def upvote
+  @article = Article.find(params[:article_id])
+  @sectionthree = Sectionthree.find(params[:id])
+  @sectionthree.liked_by current_user
+  redirect_to @article
+  end
+
+  def downvote
+  @article = Article.find(params[:article_id])
+  @sectionthree = Sectionthree.find(params[:id])
+  @sectionthree.disliked_by current_user
+  redirect_to @article
   end
 
   def destroy
@@ -28,14 +40,14 @@ class SectionthreesController < ApplicationController
     if @sectionthree.present?
       @sectionthree.destroy
     else
-    redirect_to articles_path
+    redirect_to root_url
     end
   end
 
   private
 
   def sectionthree_params
-    params.require(:sectionthree).permit(:headingthree, :contentthree)
+    params.require(:sectionthree).permit(:contentthree)
   end
 
   def admin_user

@@ -5,128 +5,79 @@
   <%= image_tag @article.image.url(:medium) %>
   <h4><%= @article.deck %></h4>
   <h5><%= @article.introduction %></h5>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-          <%= @sectionone.headingone %>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">
-        <%= link_to @sectionone.contentone, sectionones_showpage_path %>
-      </div>
-    </div>
+
+<%= form_for([@article, @sectionone]) do |f| %>
+  <div class="field">
+    <%= f.text_area :contentone %>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          <%= @sectiontwo.headingtwo %>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= link_to @sectiontwo.contenttwo, sectiontwos_showpage_path %>
-      </div>
-    </div>
+  <button class="btn" type="Submit">
+    Create
+  </button>
+<% end %>
+
+<ul>
+  <li><%= @article.sectionones.count %></li>
+    <% @article.sectionones.each do |sectionones| %>
+      <li><%= sectionones.contentone %></li>
+        <%= link_to 'Upvote', like_article_sectionone_path(:article_id => @article.id, :id => sectionones.id), method: :put %>
+  <%= link_to 'Downvote', dislike_article_sectionone_path(:article_id => @article.id, :id => sectionones.id), method: :put %>
+    </ul>
+<% end %>
+
+<%= form_for([@article, @sectiontwo]) do |f| %>
+  <div class="field">
+    <%= f.text_area :contenttwo %>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          <%= @sectionthree.headingthree %>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= link_to @sectionthree.contentthree, sectionthrees_showpage_path %>
-      </div>
-    </div>
+  <button class="btn" type="Submit">
+    Create
+  </button>
+<% end %>
+
+<ul>
+  <li><%= @article.sectiontwos.count %></li>
+    <% @article.sectiontwos.each do |sectiontwos| %>
+      <li><%= sectiontwos.contenttwo %></li>
+    </ul>
+<% end %>
+
+  <%= link_to 'Upvote', like_article_sectiontwo_path(:article_id => @article.id, :id => @article.id), method: :put %>
+  <%= link_to 'Downvote', dislike_article_sectiontwo_path(:article_id => @article.id, :id => @article.id), method: :put %>
+
+<%= form_for([@article, @sectionthree]) do |f| %>
+  <div class="field">
+    <%= f.text_area :contentthree %>
   </div>
-    <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-          <%= @sectionfour.headingfour %>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseFour" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= link_to @sectionfour.contentfour, sectionfours_showpage_path %>
-              </div>
-                  <div class="panel panel-default">
-    </div>
+  <button class="btn" type="Submit">
+    Create
+  </button>
+<% end %>
+
+<ul>
+  <li><%= @article.sectionthrees.count %></li>
+    <% @article.sectionthrees.each do |sectionthrees| %>
+      <li><%= sectionthrees.contentthree %></li>
+        <%= link_to 'Upvote', like_article_sectionthree_path(:article_id => @article.id, :id => sectionthrees.id), method: :put %>
+  <%= link_to 'Downvote', dislike_article_sectionthree_path(:article_id => @article.id, :id => sectionthrees.id), method: :put %>
+    </ul>
+<% end %>
+
+<%= form_for([@article, @sectionfour]) do |f| %>
+  <div class="field">
+    <%= f.text_area :contentfour %>
   </div>
-</div>
-          <%= form_for([@sectionfour, @commentsfour]) do |f| %>
-            <div class="field">
-              <%= f.text_area :commentsfour %>
-            </div>
-            <button class="btn" type="Submit">
-              Create
-            </button>
-          <% end %>
+  <button class="btn" type="Submit">
+    Create
+  </button>
+<% end %>
 
-          <li><%= @sectionfour.commentsfour.count %></li>
-            <% @sectionfour.commentsfour.each do |commentsfour| %>
-              <li><%= commentsfour.commentsfour %></li>
-              <li><%= commentsfour.user.name %></li>
-            </ul>
-            <% end %> 
-
-          <%= form_for([@sectionone, @commentsone]) do |f| %>
-            <div class="field">
-              <%= f.text_area :commentsone %>
-            </div>
-            <button class="btn" type="Submit">
-              Create
-            </button>
-          <% end %>
-          <li><%= @sectionone.commentsone.count %></li>
-            <% @sectionone.commentsone.each do |commentsone| %>
-              <li><%= commentsone.commentsone %></li>
-              <li><%= commentsone.user.name %></li>
-            </ul>
-            <% end %> 
-
-          <%= form_for([@sectionthree, @commentsthree]) do |f| %>
-            <div class="field">
-              <%= f.text_area :commentsthree %>
-            </div>
-            <button class="btn" type="Submit">
-              Create
-            </button>
-          <% end %>
-
-          <li><%= @sectionthree.commentsthree.count %></li>
-            <% @sectionthree.commentsthree.each do |commentsthree| %>
-              <li><%= commentsthree.commentsthree %></li>
-              <li><%= commentsthree.user.name %></li>
-            </ul>
-            <% end %> 
-
-          <%= form_for([@sectiontwo, @commentstwo]) do |f| %>
-            <div class="field">
-              <%= f.text_area :commentstwo %>
-            </div>
-            <button class="btn" type="Submit">
-              Create
-            </button>
-          <% end %>
-
-
-          <li><%= @sectiontwo.commentstwo.count %></li>
-            <% @sectiontwo.commentstwo.each do |commentstwo| %>
-              <li><%= commentstwo.commentstwo %></li>
-              <li><%= commentstwo.user.name %></li>
-            </ul>
-            <% end %> 
-
+<ul>
+  <li><%= @article.sectionfours.count %></li>
+    <% @article.sectionfours.each do |sectionfours| %>
+      <li><%= sectionfours.contentfour %></li>
+        <%= link_to 'Upvote', like_article_sectionfour_path(:article_id => @article.id, :id => sectionfours.id), method: :put %>
+  <%= link_to 'Downvote', dislike_article_sectionfour_path(:article_id => @article.id, :id => sectionfours.id), method: :put %>
+    </ul>
+<% end %>
 
 <% @article.tags.any? %>
   <% @article.tags.each do |tag| %>

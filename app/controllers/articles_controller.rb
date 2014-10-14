@@ -15,15 +15,11 @@ class ArticlesController < ApplicationController
 
   def show
    @article = Article.find(params[:id])
-   @sectionone = Sectionone.find(params[:id])
-   @sectiontwo = Sectiontwo.find(params[:id])
-   @sectionthree = Sectionthree.find(params[:id])
-   @sectionfour = Sectionfour.find(params[:id])
+   @sectionone = Sectionone.new(params[:sectionone_params])
+   @sectiontwo = Sectiontwo.new(params[:sectiontwo_params])
+   @sectionthree = Sectionthree.new(params[:sectionthree_params])
+   @sectionfour = Sectionfour.new(params[:sectionfour_params])
    @articles = Article.all
-   @commentsone = Commentsone.new(params[:comments_content])
-   @commentstwo = Commentstwo.new(params[:comments_content])
-   @commentsthree = Commentsthree.new(params[:comments_content])
-   @commentsfour = Commentsfour.new(params[:comments_content])
    end
 
   def create
@@ -56,7 +52,9 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :introduction, :deck, :image, :tag_list)
+    params.require(:article).permit(:title, :introduction, :deck, :image, :tag_list, :headingone,
+                                      :headingtwo, :headingthree, :headingfour, :bodyone, :bodytwo,
+                                      :bodythree, :bodyfour)
   end
 
   def admin_user

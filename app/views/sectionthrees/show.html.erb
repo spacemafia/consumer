@@ -1,19 +1,5 @@
-<li><%= @sectionthree.headingthree %></li>
 <li><%= @sectionthree.contentthree %></li>
+<%= @sectionthree.user.name %>
+<%= @sectionthree.votes_for.size %>
 
-<%= form_for([@sectionthree, @commentsthree]) do |f| %>
-  <div class="field">
-    <%= f.text_area :commentsthree %>
-  </div>
-  <button class="btn" type="Submit">
-    Create
-  </button>
-<% end %>
-
-<ul>
-  <li><%= @sectionthree.commentsthree.count %></li>
-    <% @sectionthree.commentsthree.each do |commentsthree| %>
-      <li><%= commentsthree.commentsthree %></li>
-      <li><%= commentsthree.user.name %></li>
-    </ul>
-    <% end %>
+<%= link_to 'Upvote', like_article_sectionthree_path, method: :put %>

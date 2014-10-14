@@ -1,12 +1,7 @@
 <% provide(:title, 'Article Generator') %>
-<div class="row">
-<%= form_for(:sectionone) do |f| %>
-      <%= f.label :headingone %>
-      <%= f.text_field :headingone %>
-
-      <%= f.label :contentone %>
-      <%= f.text_field :contentone %>
-
-      <%= f.submit "Create sectionone", class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
+<ul>
+	<li><%= @article.sectionones.count %></li>
+    <% @article.sectionones.each do |sectionones| %>
+      <li><%= sectionones.contentone %></li>
+    </ul>
+<% end %>

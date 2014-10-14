@@ -2,25 +2,37 @@ class SectiontwosController < ApplicationController
   before_action :admin_user
     
   def index
-  @sectiontwos = Sectiontwo.all
-  @sectiontwo = current_user.sectiontwos.build
-  @user = @sectiontwo.user
+    @article = Article.find(params[:article_id])
+    @sectiontwo = @article.sectiontwos.all
   end
 
   def show
    @sectiontwo = Sectiontwo.find(params[:id])
-   @sectiontwos = Sectiontwo.all
-   @commentstwo = Commentstwo.new(params[:comments_content])
    end
 
   def create
-    @sectiontwo = current_user.sectiontwos.build(sectiontwo_params)
+    @article = Article.find(params[:article_id])
+    @sectiontwo = Sectiontwo.new(sectiontwo_params)
+    @sectiontwo.article = @article
+    @sectiontwo.user = current_user
     if @sectiontwo.save
-      flash[:success] = "Section Two created!"
-      redirect_to root_url
-    else
-    redirect_to articles_path
+       flash[:success] = "Comment created!"
+       redirect_to @article
     end
+  end
+
+  def upvote
+  @article = Article.find(params[:article_id])
+  @sectiontwo = Sectiontwo.find(params[:id])
+  @sectiontwo.liked_by current_user
+  redirect_to @article
+  end
+
+  def downvote
+  @article = Article.find(params[:article_id])
+  @sectiontwo = Sectiontwo.find(params[:id])
+  @sectiontwo.disliked_by current_user
+  redirect_to @article
   end
 
   def destroy
@@ -35,7 +47,7 @@ class SectiontwosController < ApplicationController
   private
 
   def sectiontwo_params
-    params.require(:sectiontwo).permit(:headingtwo, :contenttwo)
+    params.require(:sectiontwo).permit(:contenttwo)
   end
 
   def admin_user

@@ -1,19 +1,5 @@
-<li><%= @sectiontwo.headingtwo %></li>
 <li><%= @sectiontwo.contenttwo %></li>
+<%= @sectiontwo.user.name %>
+<%= @sectiontwo.votes_for.size %>
 
-<%= form_for([@sectiontwo, @commentstwo]) do |f| %>
-  <div class="field">
-    <%= f.text_area :commentstwo %>
-  </div>
-  <button class="btn" type="Submit">
-    Create
-  </button>
-<% end %>
-
-<ul>
-  <li><%= @sectiontwo.commentstwo.count %></li>
-    <% @sectiontwo.commentstwo.each do |commentstwo| %>
-      <li><%= commentstwo.commentstwo %></li>
-      <li><%= commentstwo.user.name %></li>
-    </ul>
-    <% end %>
+<%= link_to 'Upvote', like_article_sectiontwo_path, method: :put %>

@@ -5,13 +5,9 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :articles, dependent: :destroy
   has_many :sectionones, dependent: :destroy
-  has_many :commentsones
   has_many :sectiontwos, dependent: :destroy
-  has_many :commentstwos
   has_many :sectionthrees, dependent: :destroy
-  has_many :commentsthrees
   has_many :sectionfours, dependent: :destroy
-  has_many :commentsfours
   has_many :surveys
   before_save { self.email = email.downcase }
 	before_create :create_remember_token

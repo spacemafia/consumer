@@ -14,22 +14,40 @@ ConsumerTadka::Application.routes.draw do
   
   resources :relationships, only: [:create, :destroy]
   
-  resources :articles
+  resources :articles do
+    resources :sectionones do
+      member do
+        put "like", to: "sectionones#upvote"
+        put "dislike", to: "sectionones#downvote"
+      end
+    end
+  end 
 
-  resources :sectionones do
-    resources :commentsones
+  resources :articles do
+    resources :sectiontwos do
+      member do
+        put "like", to: "sectiontwos#upvote"
+        put "dislike", to: "sectiontwos#downvote"
+      end
+    end
   end
 
-  resources :sectiontwos do
-    resources :commentstwos
+  resources :articles do
+    resources :sectionthrees do
+      member do
+        put "like", to: "sectionthrees#upvote"
+        put "dislike", to: "sectionthrees#downvote"
+      end
+    end
   end
 
-  resources :sectionthrees do
-    resources :commentsthrees
-  end
-
-  resources :sectionfours do
-    resources :commentsfours
+  resources :articles do
+    resources :sectionfours do
+      member do
+        put "like", to: "sectionfours#upvote"
+        put "dislike", to: "sectionfours#downvote"
+      end
+    end
   end
 
   resources :surveys
