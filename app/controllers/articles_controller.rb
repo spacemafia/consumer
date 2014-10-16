@@ -1,9 +1,11 @@
 class ArticlesController < ApplicationController
+  before_action :admin_user, only: [:new, :create, :destroy]
     
   def new
   @articles = Article.all
   @article = current_user.articles.build(article_params) if admin_user
-  @user = @article.user if admin_user
+  @user = current_user
+  @question = current_user.questions.build(params[:question_params])
   end
 
   def index
@@ -11,6 +13,7 @@ class ArticlesController < ApplicationController
   @article = current_user.articles.build
   @user = @article.user if current_user
   @questions = Question.find(:all, :limit => 5)
+  @question = current_user.questions.build(params[:question_params])
   end
 
   def show
@@ -20,15 +23,17 @@ class ArticlesController < ApplicationController
    @sectionthree = Sectionthree.new(params[:sectionthree_params])
    @sectionfour = Sectionfour.new(params[:sectionfour_params])
    @articles = Article.all
+   @user = current_user
+   @question = current_user.questions.build(params[:question_params])
    end
 
   def create
     @article = current_user.articles.build(article_params)
     if @article.save
       flash[:success] = "Article created!"
-      redirect_to root_url
+      redirect_to @article
     else
-    redirect_to articles_path
+      redirect_to articles_path
     end
   end
 

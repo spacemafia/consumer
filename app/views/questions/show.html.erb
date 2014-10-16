@@ -1,23 +1,35 @@
 <% provide(:title, @question.content) %>
-<ul>
-<li><%= @question.content %></li>
-<li><%= @question.user.name %></li>
-<li><%= render 'follow_form' if signed_in? %></li>
-<li><%= render 'followerstats' if signed_in? %></li>
-<li><%= render 'shared/answer_form' if signed_in? %></li>
-</ul>
-<ul>
-	<li><%= @question.answers.count %></li>
+<div class="showquestion">
+<h5>
+<% @question.tags.any? %>
+	<% @question.tags.each do |tag| %>
+	<%= link_to tag.name, tagged_url(:tag => tag.name) %>
+<% end %>
+</h5>
+<h3>
+<%= @question.content %>
+</h3>
+<h5>
+<%= link_to @question.user.name, users_showpage_path(:id => @user.id) %>
+</h5>
+<%= render 'follow_form' if signed_in? %>
+<%= render 'followerstats' if signed_in? %>
+<%= render 'shared/answer_form' %>
+
+
+<%= @question.answers.count %>
   <% @question.answers.each do |answer| %>
 	<%= answer.answer_content %>
-	<%= answer.user.name %>
+	<%= link_to answer.user.name, users_showpage_path(:id => @user.id) %>
 	<%= answer.get_likes.size %>
 	<%= answer.get_dislikes.size %>
 	<%= link_to 'Upvote', like_question_answer_path(:question_id => @question.id, :id => answer.id), method: :put %>
 	<%= link_to 'Downvote', dislike_question_answer_path(:question_id => @question.id, :id => answer.id), method: :put %><br/>
 	<% end %>
-</ul>
-<% @question.tags.any? %>
-	<% @question.tags.each do |tag| %>
-	<%= link_to tag.name, tagged_url(:tag => tag.name) %>
-<% end %> 
+
+<% @questions.find(:all, :limit => 12).each do |question| %>
+	<% if question.tag_list == @question.tag_list %>
+	<%= question.content %>
+<% end %>
+<% end %>
+</div>

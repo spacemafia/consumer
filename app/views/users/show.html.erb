@@ -38,3 +38,8 @@
   </ul>
   <% end %>
 </div>
+
+  <li><%= @user.answers.count %></li>
+  <% @user.answers.each do |answer| %>
+  <%= answer.votes_for.size %>
+  <% end %>

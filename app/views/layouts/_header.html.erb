@@ -41,6 +41,12 @@
             <li><%= link_to "Threads Base", "#" %></li>
           </ul>
         </li>
+      <% if signed_in? %>
+        <li><%= link_to "Log out", session_path(:id => @user.id), method: :delete %></li>
+        <li><%= link_to "Account Settings", edit_user_path(:id => @user.id) %></li>
+      <% else %>
+        <li><%= link_to "Sign in", new_session_path %></li>
+      <% end %>
   </div><!-- /.navbar-collapse -->
 </div><!-- / .container -->
 </nav>

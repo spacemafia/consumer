@@ -1,34 +1,28 @@
 <% provide(:title, 'All Questions') %>
-<div class="row">
-  <aside class="span4">
-      <h1>
-        Latest questions
-      </h1>
-  </aside>
-  <table>
-  <thead>
-    <tr>
-      <th>Question</th>
-      <th>Question Age</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= link_to question.user.name, users_showpage_path(:id => question.user.id) %></td>
-      <td><%= time_ago_in_words(question.created_at) %></td>
-    <td><%= link_to question.content, user_question_path(:email => question.user.id, :id => question.id) %></td>
-       <% if current_user?(question.user) %>
-          <td><%= link_to 'Edit', edit_question_path(question) %></td>
-          <td><%= link_to "Delete", question, method: :delete,
-                                     data: { confirm: "You sure?" } %></td>
-    <% end %>
-    </tr>
-<% end %>
-</tbody>
-</table>
-</div>
+    <div class="Index">
+        <% @questions.each do |question| %>
+      <h6>
+        <%= link_to question.user.name, users_showpage_path(:id => question.user.id) %>
+      </h6>
+      <h6>
+        <%= time_ago_in_words(question.created_at) %>
+      </h6>
+      <h2>
+      <%= link_to question.content, user_question_path(:email => question.user.id, :id => question.id) %>
+      </h5>
+        <% if current_user?(question.user) %>
+      <h6>
+        <%= link_to 'Edit', edit_question_path(question) %>
+        <%= link_to "Delete", question, method: :delete,
+                                        data: { confirm: "You sure?" } %>
+        <% end %>
+      <% end %>
+      </h6>
+    </div>
+
+<%= will_paginate %>
+
 <% @articles.each do |article| %>
-   <li><%= article.title %></li>
-   <li><%= article.deck %></li>
+   <%= article.title %>
+   <%= article.deck %>
 <% end %>

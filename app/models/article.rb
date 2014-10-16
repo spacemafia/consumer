@@ -7,6 +7,7 @@ has_many :sectionfours
 has_many :questions
 belongs_to :question
 has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 default_scope -> { order('created_at DESC') }
 validates :user_id, presence: true
 validates :title, presence: true

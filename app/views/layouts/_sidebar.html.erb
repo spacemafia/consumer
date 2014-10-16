@@ -1,0 +1,78 @@
+<div class="sidebar">
+  <div class="Main-message">
+    <h3>Consumer Shield</h3>
+  </div>
+    <div class="Complaints-Box">
+      <form role="form">
+        <div class="form-group">
+          <label for="exampleInputEmail1"><h4 class="index">Brand Complaints</h4></label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Type in the Brand Name">
+          <button type="submit" class="btn btn-primary"><%= link_to "Resolve my complaint", "http://www.akosha.com", :target => "_blank" %> </button>
+        </div>
+      </form>
+    </div>
+    <div class="Colour-One">
+    </div>
+        <div class="Forum">
+          <% if signed_in? %>
+            <div class="row">
+              <aside class="span4">
+                <section>
+                  <%= render 'shared/user_info' %>
+                </section>
+                <section>
+                  <%= render 'shared/question_form' %>
+                </section>
+              </aside>
+        </div>
+
+        <% else %>
+        <div class="Community-Support">
+           <h4>Community Support</h4>
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#tab1" data-toggle="tab">Log In</a></li>
+                <li><a href="#tab2" data-toggle="tab">Sign up</a></li>
+                 </ul>
+                 <div class="tab-content">
+                 <div class="tab-pane active" id="tab1">
+                  <%= form_for(:session, url: sessions_path) do |f| %>
+                    <%= f.text_field :email %>
+                    <%= f.password_field :password %>
+                    <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+                  <% end %>
+                 </div>
+                 <div class="tab-pane" id="tab2">
+                    <%= form_for(:user) do |f| %>
+                      <%= f.label :name %>
+                      <%= f.text_field :name %>
+
+                      <%= f.label :email %>
+                      <%= f.text_field :email %>
+
+                      <%= f.label :password %>
+                      <%= f.password_field :password %>
+
+                      <%= f.label :password_confirmation, "Confirmation" %>
+                      <%= f.password_field :password_confirmation %>
+
+                      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+                    <% end %>
+                  </div>
+                  <% end %>
+                  </div>
+                                
+    <div class="Knowledge-Box">
+    <div class="Categories">
+      <h4>Knowledge Base</h4>
+        <button type="submit" class="btn btn-default"><%= link_to "Auto", "#", :target => "_blank" %> </button>
+        <button type="submit" class="btn btn-default"><%= link_to "Finance", "#", :target => "_blank" %> </button>
+        <button type="submit" class="btn btn-default"><%= link_to "Telecom", "#", :target => "_blank" %> </button>
+        <button type="submit" class="btn btn-default"><%= link_to "Technology", "#", :target => "_blank" %> </button>
+        <button type="submit" class="btn btn-default"><%= link_to "Travel", "#", :target => "_blank" %> </button>
+        <button type="submit" class="btn btn-default"><%= link_to "Real Estate", "#", :target => "_blank" %> </button>
+        <button type="submit" class="btn btn-default"><%= link_to "Online Shopping", "#", :target => "_blank" %> </button>
+      </div>
+  </div>
+</div>
+</div>
+</div>

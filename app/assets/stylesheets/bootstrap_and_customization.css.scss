@@ -19,10 +19,29 @@ $dropdown-link-hover-bg: #ecf0f1;
 	text-color: red;
 	font-size: 30px;
 	margin-bottom: 0px;
+  position: relative;
 }
 
+.sidebar
+    {width: 320px;
+      height: 440px;
+      background-color: #ecf0f1;
+      position: absolute;
+      float: right;
+      margin-top: -20px;
+      margin-left: 830px;}
+
+.showquestion
+    {float: left;}
+
+.Main-message
+    {margin-top: -15px;}
+
+.Main-message, .form-group, .Forum
+    {margin-left: 10px;}
+
 footer {
-  margin-top: 430px;
+  margin-top: 630px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #999;

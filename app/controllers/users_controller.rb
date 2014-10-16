@@ -5,11 +5,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
+    @user = current_user
   end
 
   def show
     @user = User.find(params[:id])
     @questions = @user.questions.paginate(page: params[:page])
+    @question = current_user.questions.build(params[:question_params])
   end
 
   def new
