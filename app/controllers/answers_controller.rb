@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-  before_action :admin_user
 
   def index
     @question = Question.find(params[:question_id])

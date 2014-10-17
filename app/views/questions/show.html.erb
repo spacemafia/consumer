@@ -17,7 +17,6 @@
 <%= render 'shared/answer_form' %>
 
 
-<%= @question.answers.count %>
   <% @question.answers.each do |answer| %>
 	<%= answer.answer_content %>
 	<%= link_to answer.user.name, users_showpage_path(:id => @user.id) %>
@@ -32,4 +31,5 @@
 	<%= question.content %>
 <% end %>
 <% end %>
+
 </div>

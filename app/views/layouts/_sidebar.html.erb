@@ -64,13 +64,9 @@
     <div class="Knowledge-Box">
     <div class="Categories">
       <h4>Knowledge Base</h4>
-        <button type="submit" class="btn btn-default"><%= link_to "Auto", "#", :target => "_blank" %> </button>
-        <button type="submit" class="btn btn-default"><%= link_to "Finance", "#", :target => "_blank" %> </button>
-        <button type="submit" class="btn btn-default"><%= link_to "Telecom", "#", :target => "_blank" %> </button>
-        <button type="submit" class="btn btn-default"><%= link_to "Technology", "#", :target => "_blank" %> </button>
-        <button type="submit" class="btn btn-default"><%= link_to "Travel", "#", :target => "_blank" %> </button>
-        <button type="submit" class="btn btn-default"><%= link_to "Real Estate", "#", :target => "_blank" %> </button>
-        <button type="submit" class="btn btn-default"><%= link_to "Online Shopping", "#", :target => "_blank" %> </button>
+          <% @questions.each do |question| %>
+          <%= question.followers.count %>
+          <% end %>
       </div>
   </div>
 </div>

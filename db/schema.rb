@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014023019) do
+ActiveRecord::Schema.define(version: 20141017162123) do
 
   create_table "answers", force: true do |t|
     t.string   "answer_content"
@@ -19,7 +19,22 @@ ActiveRecord::Schema.define(version: 20141014023019) do
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
+
+  add_index "answers", ["cached_votes_down"], name: "index_answers_on_cached_votes_down"
+  add_index "answers", ["cached_votes_score"], name: "index_answers_on_cached_votes_score"
+  add_index "answers", ["cached_votes_total"], name: "index_answers_on_cached_votes_total"
+  add_index "answers", ["cached_votes_up"], name: "index_answers_on_cached_votes_up"
+  add_index "answers", ["cached_weighted_average"], name: "index_answers_on_cached_weighted_average"
+  add_index "answers", ["cached_weighted_score"], name: "index_answers_on_cached_weighted_score"
+  add_index "answers", ["cached_weighted_total"], name: "index_answers_on_cached_weighted_total"
 
   create_table "articles", force: true do |t|
     t.string   "title"
